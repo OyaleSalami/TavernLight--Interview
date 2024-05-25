@@ -23,9 +23,12 @@ void Game::addItemToPlayer(const std::string& recipient, uint 16_t itemId)
         if(player->isOffline())
         {
             IOLoginData::savePlayer(player);
+            /**
+                *If this stores the pointer somehwere, then calling a delete() would be harmful
+                *If it doesn't then the memory referenced by the pointer should be freed up
+                *It's hard to tell but I won't free up the memory here
+            **/
         }
-
-        delete(player); //Free up the memory created
         
         /**
             *This section has the memory freeing parts because it's here we allocated the memory 
